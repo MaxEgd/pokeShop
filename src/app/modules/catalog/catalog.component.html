@@ -1,0 +1,56 @@
+<div>
+  <span>Rare Holo : </span>
+  <input type="checkbox" (change)="refreshCards($event)" />
+</div>
+<span>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Rarity</th>
+        <th>Pokedex number</th>
+        <th>Hp</th>
+        <th>Price</th>
+        <th>
+          <img class="cart-svg" src="./assets/icons/shopping-cart-solid.svg" />
+        </th>
+        <th>-</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let card of cards$ | async">
+        <td>{{ card.name }}</td>
+        <td>{{ card.rarity }}</td>
+        <td>
+          {{
+            card?.nationalPokedexNumbers[0]
+              ? card.nationalPokedexNumbers[0]
+              : "N/A"
+          }}
+        </td>
+        <td>{{ card.hp }}</td>
+        <td>{{ getPrice(card) }}</td>
+        <td>
+          <img
+            class="cart-plus-svg"
+            src="./assets/icons/cart-plus-solid.svg"
+            (click)="addCard(card)"
+          />
+        </td>
+        <td>
+          <button (click)="removeCard(card)">-</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</span>
+<span>
+  <app-cart-list></app-cart-list>
+</span>
+<!-- <div *ngIf="card.qu;then contenu_bon else contenu_pas_bon">Le contenu saisi ici sera ignoré.</div>
+<ng-template #contenu_bon>Le contenu stocké ici s'affichera uniquement si la condition est remplie.</ng-template>
+<ng-template #contenu_pas_bon>Le contenu stocké ici s'affichera uniquement si la condition n'est pas remplie.</ng-template>
+
+
+<div *ngIf="condition_est_remplie;then contenu"></div>
+<ng-template #contenu>Le contenu stocké ici s'affichera uniquement si la condition est remplie.</ng-template> -->

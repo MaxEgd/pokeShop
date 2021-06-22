@@ -1,0 +1,26 @@
+<div>
+  <div>Panier</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Article</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartItem of cart$ | async">
+        <td>{{ cartItem.name }}</td>
+        <td>{{ cartItem.quantity }}</td>
+        <td>{{ cartItem.price }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">Total price:</td>
+        <td>{{ totalPrice | async }}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
