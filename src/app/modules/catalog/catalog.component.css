@@ -1,7 +1,12 @@
 .cart-svg {
-  height: 12px;
+  min-width: 20px;
 }
 
-.cart-plus-svg {
+.product-action {
   cursor: pointer;
+}
+
+.little-content {
+  width: 75px;
+  text-align: center;
 }

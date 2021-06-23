@@ -11,6 +11,8 @@ import { cardsReducer } from './state/cards.reducer';
 import { CartListComponent } from './modules/cart-list/cart-list.component';
 import { cartReducer } from './state/cart.reducer';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { cartReducer } from './state/cart.reducer';
     AppRoutingModule,
     FormsModule,
     StoreModule.forRoot({cards: cardsReducer, cart: cartReducer}),
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

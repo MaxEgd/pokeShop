@@ -12,6 +12,11 @@ export const removeCard = createAction(
   props<{ card: Card }>()
 );
 
+export const removeCartItem = createAction(
+  '[Cart List] Remove cart item of cart list',
+  props<{cart: Cart}>()
+)
+
 export const retrievedCart = createAction(
   '[Card List] Retrieve cart content Success',
   props<{ cart: Array<Cart> }>()

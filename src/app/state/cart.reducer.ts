@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Card } from '../models/card.model';
 import { Cart } from '../models/cart.model';
-import { addCard, removeCard } from './cart.action';
+import { addCard, removeCard, removeCartItem } from './cart.action';
 
 export const initialState: ReadonlyArray<Cart> = [];
 
@@ -37,24 +37,26 @@ export const cartReducer = createReducer(
   on(removeCard, (state, { card }) => {
     const stateCopy = [...state];
     const foundCartElementIndex = stateCopy.findIndex((c) => c.id === card.id);
-    let existingCart: Cart = state[foundCartElementIndex];
-    if(existingCart.quantity <= 1) {
-    stateCopy.splice(foundCartElementIndex, 1);
-    } else {
-      const newCart: Cart = {
-        id: existingCart.id,
-        name: existingCart.name,
-        quantity: existingCart.quantity - 1,
-        price: existingCart.price,
-        rarity: existingCart.rarity,
-      };
-      stateCopy.splice(foundCartElementIndex, 1, newCart);
-
+    if (foundCartElementIndex > -1) {
+      let existingCart: Cart = state[foundCartElementIndex];
+      if (existingCart.quantity <= 1) {
+        stateCopy.splice(foundCartElementIndex, 1);
+      } else {
+        const newCart: Cart = {
+          id: existingCart.id,
+          name: existingCart.name,
+          quantity: existingCart.quantity - 1,
+          price: existingCart.price,
+          rarity: existingCart.rarity,
+        };
+        stateCopy.splice(foundCartElementIndex, 1, newCart);
+      }
     }
 
-
-console.log('remove', stateCopy);
     return [...stateCopy];
+  }),
+  on(removeCartItem, (state, {cart}) => {
+    return state.filter(c => c.id !== cart.id);
   })
 );
 

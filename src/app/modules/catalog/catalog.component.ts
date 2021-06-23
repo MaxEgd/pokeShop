@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Card } from 'src/app/models/card.model';
-import { addCard, removeCard } from 'src/app/state/cart.action';
+import { addCard, removeCard, retrievedCart } from 'src/app/state/cart.action';
+import { selectCart } from 'src/app/state/cart.selector';
 import { retrievedCardList } from './../../state/cards.action';
 import { selectCards } from './../../state/cards.selector';
 import { CardsService } from './service/cards.service';
@@ -40,7 +41,7 @@ export class CatalogComponent {
   }
 
   getFilteredCard(): void {
-    // S'il n'y avait que peu de cartes j'aurais simplement pu appliquer un filtre sur les cartes du store (cards.filter(c => c.rarity === 'Holo Rare')).
+    // S'il n'y avait que peu de cartes j'aurais simplement pu tout récupérer et appliquer un filtre sur les cartes du store (cards.filter(c => c.rarity === 'Holo Rare')).
     // Ici il vaut mieux refaire un appel avec le critère de recherche correspondant.
     this.cardsService.getFilteredCards().subscribe((cards) => {
       this.executeRetrievedCardList(cards);
@@ -64,7 +65,6 @@ export class CatalogComponent {
 
   addCard(card: Card): void {
     this.store.dispatch(addCard({card}));
-
   }
 
   removeCard(card: Card): void {
