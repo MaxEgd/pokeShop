@@ -1,0 +1,32 @@
+<div>
+  <div class="title">Panier</div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="article-column">Article</th>
+        <th class="quantity-column">Quantity</th>
+        <th class="price-column">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartItem of cart$ | async">
+        <td>
+          <img (click)="removeCartItem(cartItem)" class="delete-icon" src="./assets/icons/times-circle-regular.svg"/>
+        </td>
+        <td class="article-column">{{ cartItem.name }}</td>
+        <td class="quantity-column">{{ cartItem.quantity }}</td>
+        <td class="price-column">{{ cartItem.price }}</td>
+      </tr>
+    </tbody>
+
+      <tfoot *ngIf="(cart$ | async)?.length > 0">
+        <tr>
+          <td></td>
+          <td colspan="2" class="total-price">Total price:</td>
+          <td class="price-column">{{ totalPrice | async | number: '1.2-2'}}</td>
+        </tr>
+      </tfoot>
+  </table>
+</div>
