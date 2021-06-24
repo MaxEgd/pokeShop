@@ -3,5 +3,5 @@ import { Cart } from '../models/cart.model';
 
 export interface AppState {
   cards: ReadonlyArray<Card>;
-  cart: Cart[];
+  cart: ReadonlyArray<Cart>;
 }

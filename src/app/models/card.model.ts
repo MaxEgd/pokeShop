@@ -2,6 +2,8 @@ export interface Card {
   id: string;
   name: string;
   rarity: string;
+  hp: number;
+  nationalPokedexNumbers: number[];
   tcgplayer: Tcgplayer;
 }
 
