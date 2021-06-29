@@ -1,10 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
-import { Card } from "../models/card.model";
+import { CardsResponse } from '../models/cardsReponse.model';
 import { retrievedCardList } from "./cards.action";
 
-export const initialState: ReadonlyArray<Card> = [];
+export let initialState: CardsResponse;
 
 export const cardsReducer = createReducer(
   initialState,
-  on(retrievedCardList, (state, { cards }) => [...cards])
+  on(retrievedCardList, (state, { cardsResponse }) =>  {return cardsResponse})
 );

@@ -20,7 +20,7 @@ export class CardsService {
    * Retourne une liste de cartes pokémon depuis l'API.
    * @returns le tableau de cartes
    */
-  getCards(): Observable<Card[]> {
+  getCards(): Observable<CardsResponse> {
     // TODO: header à externaliser car utilisé dans toutes les requêtes http. (inutile ici car l'on utilise 1 seul service pour l'exercice)
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -30,7 +30,8 @@ export class CardsService {
     return this.http.get<CardsResponse>(this.getCardsUrl, { headers }).pipe(
       map((response) => {
         console.log('getCards: ', response);
-        return response.data as Card[];
+        return response;
+        // return response.data as Card[];
       })
     );
   }
@@ -39,7 +40,7 @@ export class CardsService {
    * Retourne une liste filtrée de cartes pokémon depuis l'API.
    * @returns le tableau de cartes
    */
-   getFilteredCards(): Observable<Card[]> {
+   getFilteredCards(): Observable<CardsResponse> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'X-Api-Key': this.token
@@ -47,7 +48,7 @@ export class CardsService {
 
     return this.http.get<CardsResponse>(this.getCardsUrlHoloRare, { headers }).pipe(
       map((response) => {
-        return response.data;
+        return response;
       })
     );
   }

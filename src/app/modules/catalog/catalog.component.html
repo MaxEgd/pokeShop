@@ -19,7 +19,7 @@
             />
           </th>
         </tr>
-        <tr *ngFor="let card of cards$ | async">
+         <tr *ngFor="let card of cards$ | async | paginate: config">
           <td>{{ card.name }}</td>
           <td>{{ card.rarity }}</td>
           <td class="little-content">
@@ -47,6 +47,7 @@
           </td>
         </tr>
       </table>
+      <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
     </div>
 
     <div class="col offset-1 float-right">

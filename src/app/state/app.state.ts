@@ -1,7 +1,7 @@
-import { Card } from '../models/card.model';
+import { CardsResponse } from '../models/cardsReponse.model';
 import { Cart } from '../models/cart.model';
 
 export interface AppState {
-  cards: ReadonlyArray<Card>;
+  cardsResponse: CardsResponse;
   cart: ReadonlyArray<Cart>;
 }

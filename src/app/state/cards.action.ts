@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { Card } from '../models/card.model';
+import { CardsResponse } from '../models/cardsReponse.model';
 
 export const retrievedCardList = createAction(
   '[Card List/API] Retrieve cards',
-  props<{ cards: Array<Card> }>()
+  props<{ cardsResponse: CardsResponse }>()
 );

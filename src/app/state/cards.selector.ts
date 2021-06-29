@@ -1,8 +1,17 @@
 import { createSelector } from '@ngrx/store';
-import { Card } from '../models/card.model';
+import { CardsResponse } from '../models/cardsReponse.model';
 import { AppState } from './app.state';
 
 export const selectCards = createSelector(
-  (state: AppState) => state.cards,
-  (cards: Array<Card>) => cards
+  (state: AppState) => state.cardsResponse,
+  (cardsResponse: CardsResponse) => {
+    cardsResponse?.data}
 );
+
+export const selectCardsResponse = createSelector(
+  (state: AppState) => state.cardsResponse,
+  (cardsResponse: CardsResponse) => {
+    return cardsResponse}
+);
+
+

@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Card } from 'src/app/models/card.model';
+import { CardsResponse } from 'src/app/models/cardsReponse.model';
 import { addCard, removeCard, retrievedCart } from 'src/app/state/cart.action';
 import { selectCart } from 'src/app/state/cart.selector';
 import { retrievedCardList } from './../../state/cards.action';
-import { selectCards } from './../../state/cards.selector';
+import { selectCards, selectCardsResponse } from './../../state/cards.selector';
 import { CardsService } from './service/cards.service';
 
 @Component({
@@ -13,10 +16,28 @@ import { CardsService } from './service/cards.service';
   styleUrls: ['./catalog.component.css'],
 })
 export class CatalogComponent {
-  constructor(public store: Store, private cardsService: CardsService) {}
+  config: any;
+// cartes: Card[] = [];
+  constructor(public store: Store, private cardsService: CardsService) {
+    this.config = {
+      currentPage: 1,
+      itemsPerPage: 2,
+    };
+    // this.store.pipe(select(selectCardsResponse)).subscribe(res => {
+    //   if(res != undefined){
+    //     this.cartes = new Array<Card>(res.totalCount);
 
-  // TODO: comme ça ou @Input() ?
+    //     res.data.forEach(c => this.cartes.push(c));
+    //     this.count = res;
+    //   }
+    // });
+  }
+
   cards$ = this.store.pipe(select(selectCards));
+// count;
+
+
+
 
   /**
    * Actualise la liste des cartes en fonction de l'état de la checkbox (true ou false)
@@ -35,21 +56,24 @@ export class CatalogComponent {
   }
 
   getCards(): void {
-    this.cardsService.getCards().subscribe((cards) => {
-      this.executeRetrievedCardList(cards);
+    this.cardsService.getCards().subscribe((cardsResponse) => {
+      console.log('cardsResponse', cardsResponse);
+      this.executeRetrievedCardList(cardsResponse);
+
     });
   }
 
   getFilteredCard(): void {
     // S'il n'y avait que peu de cartes j'aurais simplement pu tout récupérer et appliquer un filtre sur les cartes du store (cards.filter(c => c.rarity === 'Holo Rare')).
     // Ici il vaut mieux refaire un appel avec le critère de recherche correspondant.
-    this.cardsService.getFilteredCards().subscribe((cards) => {
-      this.executeRetrievedCardList(cards);
+    this.cardsService.getFilteredCards().subscribe((cardsResponse) => {
+      this.executeRetrievedCardList(cardsResponse);
     });
   }
 
-  executeRetrievedCardList(cards: Card[]): void {
-    this.store.dispatch(retrievedCardList({ cards }));
+  executeRetrievedCardList(cardsResponse: CardsResponse): void {
+    this.store.dispatch(retrievedCardList({ cardsResponse }));
+    console.log(this.store);
   }
 
   /**
@@ -64,10 +88,14 @@ export class CatalogComponent {
   }
 
   addCard(card: Card): void {
-    this.store.dispatch(addCard({card}));
+    this.store.dispatch(addCard({ card }));
   }
 
   removeCard(card: Card): void {
-    this.store.dispatch(removeCard({card}));
+    this.store.dispatch(removeCard({ card }));
+  }
+
+  pageChange($event): void {
+    this.config.currentPage = $event;
   }
 }
