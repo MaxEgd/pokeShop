@@ -1,12 +1,35 @@
 .cart-svg {
-  min-width: 20px;
+  max-width: 25px;
 }
 
 .product-action {
   cursor: pointer;
+  min-width: 0px;
+  max-width: 20px;
 }
 
 .little-content {
   width: 75px;
   text-align: center;
 }
+
+.border-table {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border: 25px solid #ffe685;
+    border-radius: 50px;
+}
+
+.cart-border-table {
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border: 10px solid #ffe685;
+  border-radius: 50px;
+}
+
+.background-table {
+  background-color: #f2f8ff;
+}
+

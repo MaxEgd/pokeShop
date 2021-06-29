@@ -1,7 +1,9 @@
-<div>
-  <div class="title">Panier</div>
 
-  <table class="table">
+  <div class="card-background cart-border-table">
+
+  <div class="title col-sm-12">Cart</div>
+
+  <table class="table ">
     <thead>
       <tr>
         <th></th>
@@ -13,7 +15,7 @@
     <tbody>
       <tr *ngFor="let cartItem of cart$ | async">
         <td>
-          <img (click)="removeCartItem(cartItem)" class="delete-icon" src="./assets/icons/times-circle-regular.svg"/>
+          <span (click)="removeCartItem(cartItem)" class="delete-icon"></span>
         </td>
         <td class="article-column">{{ cartItem.name }}</td>
         <td class="quantity-column">{{ cartItem.quantity }}</td>
@@ -30,3 +32,4 @@
       </tfoot>
   </table>
 </div>
+

@@ -1,24 +1,34 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-2">
+    <div class="col-sm-4 offset-md-2">
       <span>Rare Holo : </span>
       <input type="checkbox" (change)="refreshCards($event)" />
     </div>
-    <div class="col-5">
-      <table class="table">
-        <tr>
-          <th>Name</th>
-          <th>Rarity</th>
-          <th class="little-content">Pokedex number</th>
-          <th class="little-content">Hp</th>
-          <th class="little-content">Price</th>
-          <th colspan="2">
-            <img
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8 border-table background-table">
+      <div table-responsive>
+
+      <table class="table table-striped">
+        <thead>
+
+          <tr>
+            <th>Name</th>
+            <th>Rarity</th>
+            <th class="little-content">Pokedex number</th>
+            <th class="little-content">Hp</th>
+            <th class="little-content">Price</th>
+            <th colspan="2">
+              <img
               class="cart-svg"
               src="./assets/icons/shopping-cart-solid.svg"
-            />
-          </th>
-        </tr>
+              />
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+
         <tr *ngFor="let card of cards$ | async">
           <td>{{ card.name }}</td>
           <td>{{ card.rarity }}</td>
@@ -46,10 +56,14 @@
             />
           </td>
         </tr>
+      </tbody>
+
       </table>
     </div>
 
-    <div class="col offset-1 float-right">
+    </div>
+
+    <div class="col-sm-4 ">
       <app-cart-list></app-cart-list>
     </div>
   </div>

@@ -1,6 +1,7 @@
 .title {
   text-align: center;
   font-weight: 700;
+  margin-bottom: 5px;
 }
 
 .article-column{
@@ -25,4 +26,24 @@ text-align: center;
 .delete-icon {
   height:20px;
   cursor: pointer;
+  content: url("src/assets/icons/times-circle-regular.svg")
+}
+
+.card-background {
+  background-color: white;
+}
+
+/* .border-table {
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border: 10px solid #ffe685;
+} */
+
+.cart-border-table {
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border: 10px solid #ffe685;
+  border-radius: 50px;
 }
