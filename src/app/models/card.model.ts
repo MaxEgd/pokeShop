@@ -2,15 +2,12 @@ export interface Card {
   id: string;
   name: string;
   rarity: string;
-  hp: number;
+  hp: string;
   nationalPokedexNumbers: number[];
   tcgplayer: Tcgplayer;
 }
 
 export interface Tcgplayer {
-  prices: Array<PriceCard>;
+  prices: {[key: string]: {[key:string]: number}};
 }
 
-export interface PriceCard {
-  [key: string]: number;
-}
