@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Card } from 'src/app/models/card.model';
-import { addCard, removeCard, retrievedCart } from 'src/app/state/cart.action';
-import { selectCart } from 'src/app/state/cart.selector';
+import { addCard, removeCard } from 'src/app/state/cart.action';
 import { retrievedCardList } from './../../state/cards.action';
 import { selectCards } from './../../state/cards.selector';
 import { CardsService } from './service/cards.service';
@@ -15,19 +14,20 @@ import { CardsService } from './service/cards.service';
 export class CatalogComponent {
   constructor(public store: Store, private cardsService: CardsService) {}
 
-  // TODO: comme ça ou @Input() ?
   cards$ = this.store.pipe(select(selectCards));
+  holoFilter = false;
+  searchCardString: string;
 
   /**
    * Actualise la liste des cartes en fonction de l'état de la checkbox (true ou false)
    * @param $event event de la checkbox
    */
-  refreshCards($event): void {
-    if ($event.target.checked) {
-      this.getFilteredCard();
-    } else {
-      this.getCards();
-    }
+  refreshCards(): void {
+    // if (this.holoFilter) {
+    //   this.getFilteredCard();
+    // } else {
+    //   this.getCards();
+    // }
   }
 
   ngOnInit() {
@@ -64,10 +64,16 @@ export class CatalogComponent {
   }
 
   addCard(card: Card): void {
-    this.store.dispatch(addCard({card}));
+    this.store.dispatch(addCard({ card }));
   }
 
   removeCard(card: Card): void {
-    this.store.dispatch(removeCard({card}));
+    this.store.dispatch(removeCard({ card }));
+  }
+
+  searchCard(cardName: string, holoFilter: boolean): void {
+    this.cardsService.getSearchedFilteredCards(cardName, holoFilter).subscribe((cards) => {
+      this.executeRetrievedCardList(cards);
+    });
   }
 }

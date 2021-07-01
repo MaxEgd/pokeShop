@@ -4,16 +4,16 @@
   margin-bottom: 5px;
 }
 
-.article-column{
+.article-column {
   min-width: 150px;
 }
 
-.quantity-column{
-min-width: 100px;
-text-align: center;
+.quantity-column {
+  min-width: 100px;
+  text-align: center;
 }
 
-.price-column{
+.price-column {
   min-width: 100px;
   text-align: center;
 }
@@ -24,21 +24,14 @@ text-align: center;
 }
 
 .delete-icon {
-  height:20px;
+  height: 20px;
   cursor: pointer;
-  content: url("src/assets/icons/times-circle-regular.svg")
+  content: url("src/assets/icons/times-circle-regular.svg");
 }
 
 .card-background {
   background-color: white;
 }
-
-/* .border-table {
-  padding: 1.5rem;
-  margin-right: 0;
-  margin-left: 0;
-  border: 10px solid #ffe685;
-} */
 
 .cart-border-table {
   padding: 1.5rem;

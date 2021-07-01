@@ -8,6 +8,5 @@ export interface Card {
 }
 
 export interface Tcgplayer {
-  prices: {[key: string]: {[key:string]: number}};
+  prices: { [key: string]: { [key: string]: number } };
 }
-

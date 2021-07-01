@@ -1,24 +1,14 @@
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpHandler,
-} from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { provideMockStore, MockStore, getMockStore } from '@ngrx/store/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Card } from 'src/app/models/card.model';
 import { AppState } from 'src/app/state/app.state';
 import { retrievedCardList } from 'src/app/state/cards.action';
-import { initialState } from 'src/app/state/cards.reducer';
-import { selectCards } from 'src/app/state/cards.selector';
 import { addCard, removeCard } from 'src/app/state/cart.action';
-import { CartListComponent } from '../cart-list/cart-list.component';
 import { CatalogComponent } from './catalog.component';
 
-fdescribe('CatalogComponent', () => {
+describe('CatalogComponent', () => {
   let component: CatalogComponent;
   let fixture: ComponentFixture<CatalogComponent>;
   let store: MockStore<AppState>;
@@ -67,17 +57,17 @@ fdescribe('CatalogComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('add method should dispatch add action', () => {
+  it('add_method_should_dispatch_add_action', () => {
     component.addCard(card);
     expect(store.dispatch).toHaveBeenCalledWith(addCard({ card }));
   });
 
-  it('removeCard method should dispatch removeCard action', () => {
+  it('removeCard_method_should_dispatch_removeCard_action', () => {
     component.removeCard(card);
     expect(store.dispatch).toHaveBeenCalledWith(removeCard({ card }));
   });
 
-  it('removeCard method should dispatch removeCard action', () => {
+  it('removeCard_method_should_dispatch_removeCard_action', () => {
     // WHEN
     component.executeRetrievedCardList([card]);
 
@@ -87,7 +77,7 @@ fdescribe('CatalogComponent', () => {
     );
   });
 
-  it('getPrice method should return price', () => {
+  it('getPrice_method_should_return_price', () => {
     // WHEN
     const result = component.getPrice(card);
 

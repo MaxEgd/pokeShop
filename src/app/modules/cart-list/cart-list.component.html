@@ -1,9 +1,7 @@
-
-  <div class="card-background cart-border-table">
-
+<div class="card-background cart-border-table">
   <div class="title col-sm-12">Cart</div>
 
-  <table class="table ">
+  <table class="table">
     <thead>
       <tr>
         <th></th>
@@ -23,13 +21,12 @@
       </tr>
     </tbody>
 
-      <tfoot *ngIf="(cart$ | async)?.length > 0">
-        <tr>
-          <td></td>
-          <td colspan="2" class="total-price">Total price:</td>
-          <td class="price-column">{{ totalPrice | async | number: '1.2-2'}}</td>
-        </tr>
-      </tfoot>
+    <tfoot *ngIf="(cart$ | async)?.length > 0">
+      <tr>
+        <td></td>
+        <td colspan="2" class="total-price">Total price:</td>
+        <td class="price-column">{{ totalPrice | async | number: "1.2-2" }}</td>
+      </tr>
+    </tfoot>
   </table>
 </div>
-

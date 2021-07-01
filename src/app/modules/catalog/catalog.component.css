@@ -14,11 +14,11 @@
 }
 
 .border-table {
-    padding: 1.5rem;
-    margin-right: 0;
-    margin-left: 0;
-    border: 25px solid #ffe685;
-    border-radius: 50px;
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border: 25px solid #ffe685;
+  border-radius: 50px;
 }
 
 .cart-border-table {
@@ -33,3 +33,20 @@
   background-color: #f2f8ff;
 }
 
+.input-card {
+  max-width: 300px;
+  display: inline-block;
+}
+
+.filter-container {
+  line-height: 70px;
+}
+
+.checkbox-filter {
+  vertical-align: middle;
+}
+
+.button-filter {
+  margin-bottom: 5px;
+  margin-left: 5px;
+}

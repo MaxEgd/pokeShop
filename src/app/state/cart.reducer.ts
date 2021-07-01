@@ -55,8 +55,8 @@ export const cartReducer = createReducer(
 
     return [...stateCopy];
   }),
-  on(removeCartItem, (state, {cart}) => {
-    return state.filter(c => c.id !== cart.id);
+  on(removeCartItem, (state, { cart }) => {
+    return state.filter((c) => c.id !== cart.id);
   })
 );
 

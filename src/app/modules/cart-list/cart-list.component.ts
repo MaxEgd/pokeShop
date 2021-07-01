@@ -2,11 +2,9 @@ import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Card } from 'src/app/models/card.model';
 import { Cart } from 'src/app/models/cart.model';
-import { selectCart } from 'src/app/state/cart.selector';
 import { removeCartItem, retrievedCart } from 'src/app/state/cart.action';
-
+import { selectCart } from 'src/app/state/cart.selector';
 
 @Component({
   selector: 'app-cart-list',
@@ -19,16 +17,14 @@ export class CartListComponent {
   cart$ = this.store.pipe(select(selectCart));
 
   ngOnInit(): void {
-    this.cart$.subscribe(cart => {
-      this.store.dispatch(retrievedCart({cart}));
+    this.cart$.subscribe((cart) => {
+      this.store.dispatch(retrievedCart({ cart }));
       this.totalPrice = this.getTotalPrice();
-
-    })
+    });
   }
 
   removeCartItem(cart: Cart): void {
-    console.log('remove card');
-    this.store.dispatch(removeCartItem({cart}));
+    this.store.dispatch(removeCartItem({ cart }));
   }
 
   getTotalPrice(): Observable<number> {

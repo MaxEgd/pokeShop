@@ -1,7 +1,7 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Card } from 'src/app/models/card.model';
 import { CardsResponse } from 'src/app/models/cardsReponse.model';
 
@@ -14,7 +14,8 @@ export class CardsService {
   // TODO: variables à exporter dans un fichier de constantes.
   private token = 'ec312660-2109-4c34-932f-64c2ebeff500';
   private getCardsUrl = 'https://api.pokemontcg.io/v2/cards';
-  private getCardsUrlHoloRare = 'https://api.pokemontcg.io/v2/cards?q=!rarity:"rare holo"';
+  private getCardsUrlHoloRare =
+    'https://api.pokemontcg.io/v2/cards?q=!rarity:"rare holo"';
 
   /**
    * Retourne une liste de cartes pokémon depuis l'API.
@@ -24,7 +25,7 @@ export class CardsService {
     // TODO: header à externaliser car utilisé dans toutes les requêtes http. (inutile ici car l'on utilise 1 seul service pour l'exercice)
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-Api-Key': this.token
+      'X-Api-Key': this.token,
     });
 
     return this.http.get<CardsResponse>(this.getCardsUrl, { headers }).pipe(
@@ -39,17 +40,41 @@ export class CardsService {
    * Retourne une liste filtrée de cartes pokémon depuis l'API.
    * @returns le tableau de cartes
    */
-   getFilteredCards(): Observable<Card[]> {
+  getFilteredCards(): Observable<Card[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-Api-Key': this.token
+      'X-Api-Key': this.token,
     });
 
-    return this.http.get<CardsResponse>(this.getCardsUrlHoloRare, { headers }).pipe(
-      map((response) => {
-        return response.data;
-      })
-    );
+    return this.http
+      .get<CardsResponse>(this.getCardsUrlHoloRare, { headers })
+      .pipe(
+        map((response) => {
+          return response.data;
+        })
+      );
   }
+
+  /**
+   * Retourne une liste filtrée de cartes pokémon depuis l'API.
+   * @returns le tableau de cartes
+   */
+   getSearchedFilteredCards(cardName: string, holoFilter: boolean): Observable<Card[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Api-Key': this.token,
+    });
+
+    // const holoFilterString = holoFilter ? '!rarity:"rare holo"' : ''
+
+    return this.http
+      .get<CardsResponse>(`https://api.pokemontcg.io/v2/cards?q=${holoFilter ? '!rarity:"rare holo"' : ''} name:"*${cardName}*"`, { headers })
+      .pipe(
+        map((response) => {
+          return response.data;
+        })
+      );
+  }
+
 
 }
